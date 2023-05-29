@@ -1,2 +1,2 @@
 ## Python
-The python code has a bug that sends two 'newline' characters in one message. (At least I think that's the issue)
+O código do python tem uns bugs. Envia dois 'newlines' em vez de apenas um numa só mensagem.
