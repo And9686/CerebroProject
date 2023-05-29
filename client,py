@@ -1,0 +1,7 @@
+# Import authorization token
+from auth import token
+import time
+
+# Import cursor control functions
+import pyautogui
+
