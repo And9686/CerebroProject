@@ -55,7 +55,7 @@ userInfo = json.loads(receivedData.recv())["result"]
 if userInfo:
     print("Successful login in EMOTIV Launcher!")
 else:
-    raise Exception("[Error A3] EMOTIV Launcher login")
+    raise Exception("[Error A3] EMOTIV Launcher login failed")
     # Open EMOTIV Launcher and login
     
 
@@ -63,13 +63,13 @@ else:
 print("[4/5] Requesting EMOTIV Launcher access...")
 
 receivedData.send(json.dumps({
+    "id": 1,
     "jsonrpc": "2.0",
     "method": "requestAccess",
     "params": {
         "clientId": your_app_client_id,
         "clientSecret": your_app_client_secret
-    },
-    "id": 1
+    }
 }))
 
 access = json.loads(receivedData.recv())["result"]["accessGranted"]
@@ -77,7 +77,7 @@ access = json.loads(receivedData.recv())["result"]["accessGranted"]
 if(access):
     print("Access granted!")
 else:
-    raise Exception("[Error A4] EMOTIV Launcher access")
+    raise Exception("[Error A4] EMOTIV Launcher access not granted")
     # Open EMOTIV Launcher and accept request
 
 
@@ -85,13 +85,13 @@ else:
 print("[5/5] Requesting Cortex API authorization...")
 
 receivedData.send(json.dumps({
+    "id": 1,
     "jsonrpc": "2.0",
     "method": "authorize",
     "params": {
         "clientId": your_app_client_id,
         "clientSecret": your_app_client_secret
-    },
-    "id": 1
+    }
 }))
 
 try:
@@ -99,8 +99,8 @@ try:
     print("Authorization granted!")
 
 except:
-    raise Exception("[Error A5] Cortex API authorization")
+    raise Exception("[Error A5] Cortex API authorization not")
     # Read API
 
 
-print("Initialized with success!")
+print("Initialized with success!\n")

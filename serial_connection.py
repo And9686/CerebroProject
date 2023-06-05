@@ -9,21 +9,21 @@ def initSerial():
                     parity=serial.PARITY_NONE,
                     stopbits=serial.STOPBITS_ONE,
                     timeout=12)
+    print("Serial port initialized!")
 
 # Close Serial Connection with Arduino
 def closeSerial():
-    global ser
     if 'ser' in globals():
         ser.close()
-        print("Porta Serie Fechada")
+        print("Serial port closed!")
     else:
-        print("Porta Serie Aberta")
+        print("Serial port never started!")
 
 def sendMessage(message):
     ser.write(message.encode())
+    print("Message sent!")
 
-
-initSerial()
-sendMessage("HelloWorld!")
-print("mensagem enviada")
-closeSerial()
+def readMessage():
+    message = ser.read(100) 
+    print("Message read!")
+    return message.decode()
